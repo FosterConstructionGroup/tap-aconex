@@ -26,11 +26,14 @@ def handle_projects(resource, schemas, state, mdata):
 
     for row in rows:
         if "documents" in schemas:
-            state = handle_documents(
-                row["ProjectId"], schemas["documents"], state, mdata
-            )
+            handle_documents(row["ProjectId"], schemas["documents"], state, mdata)
         if "mail" in schemas:
-            state = handle_mail(row["ProjectId"], schemas["mail"], state, mdata)
+            handle_mail(row["ProjectId"], schemas["mail"], state, mdata)
+
+    if "documents" in schemas:
+        state = write_bookmark(state, "documents", extraction_time)
+    if "mail" in schemas:
+        state = write_bookmark(state, "mail", extraction_time)
 
     return write_bookmark(state, resource, extraction_time)
 
@@ -65,7 +68,6 @@ def handle_documents(project_id, schema, state, mdata):
         r["DocumentId"] = r["@DocumentId"]
 
     write_many(rows, resource, schema, mdata, extraction_time)
-    return write_bookmark(state, resource, extraction_time)
 
 
 def handle_mail(project_id, schema, state, mdata):
@@ -98,7 +100,6 @@ def handle_mail(project_id, schema, state, mdata):
         r["MailId"] = r["@MailId"]
 
     write_many(rows, resource, schema, mdata, extraction_time)
-    return write_bookmark(state, resource, extraction_time)
 
 
 def write_many(rows, resource, schema, mdata, dt):
