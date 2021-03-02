@@ -1,2 +1,2 @@
 include LICENSE
-include tap_aconexw/schemas/*.json
+include tap_aconex/schemas/*.json
