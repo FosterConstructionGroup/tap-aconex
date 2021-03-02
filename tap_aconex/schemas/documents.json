@@ -1,0 +1,31 @@
+{
+  "type": ["null", "object"],
+  "additionalProperties": false,
+  "properties": {
+    "DocumentId": { "type": ["string"] },
+    "AsBuiltRequired": { "type": ["null", "boolean"] },
+    "Author": { "type": ["string"] },
+    "Check1": { "type": ["null", "boolean"] },
+    "Check2": { "type": ["null", "boolean"] },
+    "Confidential": { "type": ["null", "boolean"] },
+    "ContractDeliverable": { "type": ["null", "boolean"] },
+    "Current": { "type": ["null", "boolean"] },
+    "DateModified": { "type": ["string"], "format": "date-time" },
+    "Discipline": { "type": ["null", "string"] },
+    "DocumentNumber": { "type": ["string"] },
+    "DocumentStatus": { "type": ["null", "string"] },
+    "DocumentType": { "type": ["null", "string"] },
+    "FileSize": { "type": ["null", "number"] },
+    "FileType": { "type": ["null", "string"] },
+    "Filename": { "type": ["null", "string"] },
+    "ModifiedBy": { "type": ["null", "number"] },
+    "NumberOfMarkups": { "type": ["null", "number"] },
+    "ReviewSource": { "type": ["null", "string"] },
+    "ReviewStatus": { "type": ["null", "string"] },
+    "Revision": { "type": ["null", "number"] },
+    "Scale": { "type": ["null", "string"] },
+    "Title": { "type": ["string"] },
+    "TrackingId": { "type": ["null", "number"] },
+    "VersionNumber": { "type": ["null", "number"] }
+  }
+}

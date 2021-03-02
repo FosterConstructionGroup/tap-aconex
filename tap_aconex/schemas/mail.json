@@ -1,0 +1,21 @@
+{
+  "type": ["null", "object"],
+  "additionalProperties": false,
+  "properties": {
+    "MailId": { "type": ["string"] },
+    "MailNo": { "type": ["string"] },
+    "CorrespondenceType": { "type": ["string"] },
+    "ReferenceNumber": { "type": ["string"] },
+    "SentDate": { "type": ["string"], "format": "date-time" },
+    "Status": { "type": ["null", "string"] },
+    "Subject": { "type": ["string"] },
+    "ReasonForIssue": { "type": ["null", "string"] },
+    "AttachedDocumentCount": { "type": ["null", "string"] },
+    "AttachmentFileSize": { "type": ["null", "string"] },
+    "Confidential": { "type": ["null", "boolean"] },
+    "FromUserDetails_OrganizationId": { "type": ["null", "string"] },
+    "FromUserDetails_OrganizationName": { "type": ["null", "string"] },
+    "FromUserDetails_Name": { "type": ["null", "string"] },
+    "FromUserDetails_UserId": { "type": ["null", "string"] }
+  }
+}

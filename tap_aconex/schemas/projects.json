@@ -1,0 +1,18 @@
+{
+  "type": ["null", "object"],
+  "additionalProperties": false,
+  "properties": {
+    "ProjectId": { "type": ["number"] },
+    "ProjectName": { "type": ["string"] },
+    "CreationDate": { "type": ["string"], "format": "date-time" },
+    "StartDate": { "type": ["string"], "format": "date-time" },
+    "StopDate": { "type": ["string"], "format": "date-time" },
+    "ProjectOwnerOrganizationId": { "type": ["number"] },
+    "ProjectCode": { "type": ["number"] },
+    "ProjectCity": { "type": ["null", "string"] },
+    "ProjectDescription": { "type": ["null", "string"] },
+    "ProjectShortName": { "type": ["string"] },
+    "ProjectState": { "type": ["string"] },
+    "ProjectValue": { "type": ["null", "number"] }
+  }
+}
