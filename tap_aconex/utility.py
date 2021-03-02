@@ -38,7 +38,8 @@ def get_page(resource, endpoint, search_name, extra_query_string="", page_number
     return get_generic(
         resource,
         endpoint,
-        f"?search_type=paged&page_number={page_number}" + extra_query_string,
+        f"?search_type=paged&page_number={page_number}&page_size=500"
+        + extra_query_string,
     )[search_name]
 
 
