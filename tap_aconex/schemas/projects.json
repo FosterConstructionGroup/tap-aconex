@@ -8,11 +8,11 @@
     "StartDate": { "type": ["string"], "format": "date-time" },
     "StopDate": { "type": ["string"], "format": "date-time" },
     "ProjectOwnerOrganizationId": { "type": ["number"] },
-    "ProjectCode": { "type": ["number"] },
+    "ProjectCode": { "type": ["string"] },
     "ProjectCity": { "type": ["null", "string"] },
     "ProjectDescription": { "type": ["null", "string"] },
     "ProjectShortName": { "type": ["string"] },
-    "ProjectState": { "type": ["string"] },
+    "ProjectState": { "type": ["null", "string"] },
     "ProjectValue": { "type": ["null", "number"] }
   }
 }

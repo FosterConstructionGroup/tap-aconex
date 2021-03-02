@@ -2,6 +2,7 @@
   "type": ["null", "object"],
   "additionalProperties": false,
   "properties": {
+    "ProjectId": { "type": ["string"] },
     "MailId": { "type": ["string"] },
     "MailNo": { "type": ["string"] },
     "CorrespondenceType": { "type": ["string"] },

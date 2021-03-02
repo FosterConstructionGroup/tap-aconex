@@ -2,6 +2,7 @@
   "type": ["null", "object"],
   "additionalProperties": false,
   "properties": {
+    "ProjectId": { "type": ["string"] },
     "DocumentId": { "type": ["string"] },
     "AsBuiltRequired": { "type": ["null", "boolean"] },
     "Author": { "type": ["string"] },
@@ -18,14 +19,14 @@
     "FileSize": { "type": ["null", "number"] },
     "FileType": { "type": ["null", "string"] },
     "Filename": { "type": ["null", "string"] },
-    "ModifiedBy": { "type": ["null", "number"] },
-    "NumberOfMarkups": { "type": ["null", "number"] },
+    "ModifiedBy": { "type": ["null", "integer"] },
+    "NumberOfMarkups": { "type": ["null", "integer"] },
     "ReviewSource": { "type": ["null", "string"] },
     "ReviewStatus": { "type": ["null", "string"] },
-    "Revision": { "type": ["null", "number"] },
+    "Revision": { "type": ["null", "string"] },
     "Scale": { "type": ["null", "string"] },
     "Title": { "type": ["string"] },
-    "TrackingId": { "type": ["null", "number"] },
-    "VersionNumber": { "type": ["null", "number"] }
+    "TrackingId": { "type": ["null", "integer"] },
+    "VersionNumber": { "type": ["null", "integer"] }
   }
 }
