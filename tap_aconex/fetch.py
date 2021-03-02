@@ -62,6 +62,7 @@ def handle_documents(project_id, schema, state, mdata):
 
     for r in rows:
         r["ProjectId"] = project_id
+        r["DocumentId"] = r["@DocumentId"]
 
     write_many(rows, resource, schema, mdata, extraction_time)
     return write_bookmark(state, resource, extraction_time)
@@ -94,6 +95,7 @@ def handle_mail(project_id, schema, state, mdata):
 
     for r in rows:
         r["ProjectId"] = project_id
+        r["MailId"] = r["@MailId"]
 
     write_many(rows, resource, schema, mdata, extraction_time)
     return write_bookmark(state, resource, extraction_time)
