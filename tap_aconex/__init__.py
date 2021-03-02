@@ -52,7 +52,7 @@ def get_catalog():
             "tap_stream_id": schema_name,
             "schema": schema,
             "metadata": metadata.to_list(mdata),
-            "key_properties": "uuid",
+            "key_properties": ID_FIELDS[schema_name],
         }
         streams.append(catalog_entry)
 
