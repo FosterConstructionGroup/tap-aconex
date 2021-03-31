@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import re
 import singer
 import singer.metrics as metrics
@@ -44,16 +44,8 @@ def handle_documents(project_id, schema, state, mdata):
     # Current time in local timezone as "aware datetime", per https://stackoverflow.com/a/25887393/7170445
     extraction_time = datetime.now(timezone.utc).astimezone()
 
-    fields = "return_fields=approved,author,contractnumber,date1,docno,doctype,filename,fileSize,fileType,modifiedby,numberOfMarkups,packagenumber,received,reference,registered,reviewed,revision,scale,statusid,tagNumber,title,toclient,trackingid,versionnumber"
-    filter = ""
-
-    if bookmark is not None:
-        filter_date_format = "%Y%m%d"
-        filter_start = format_date(
-            parse_date(bookmark, datetime_format), filter_date_format
-        )
-        filter_end = format_date(extraction_time, filter_date_format)
-        filter = f"search_query=registered:[{filter_start} TO {filter_end}]"
+    fields = "&return_fields=approved,author,contractnumber,date1,docno,doctype,filename,fileSize,fileType,modifiedby,numberOfMarkups,packagenumber,received,reference,registered,reviewed,revision,scale,statusid,tagNumber,title,toclient,trackingid,versionnumber"
+    filter = get_filter_string(bookmark, extraction_time, "registered")
 
     rows = get_all_pages(
         resource,
@@ -76,23 +68,15 @@ def handle_mail(project_id, schema, state, mdata):
     # Current time in local timezone as "aware datetime", per https://stackoverflow.com/a/25887393/7170445
     extraction_time = datetime.now(timezone.utc).astimezone()
 
-    fields = "return_fields=attribute,closedoutdetails,confidential,corrtypeid,docno,fromUserDetails,inreftomailno,mailRecipients,reasonforissueid,responsedate,secondaryattribute,sentdate,subject,tostatusid,totalAttachmentsSize,attachedDocumentCount"
-    filter = ""
-
-    if bookmark is not None:
-        filter_date_format = "%Y%m%d"
-        filter_start = format_date(
-            parse_date(bookmark, datetime_format), filter_date_format
-        )
-        filter_end = format_date(extraction_time, filter_date_format)
-        filter = f"search_query=senddate:[{filter_start} TO {filter_end}]"
+    fields = "&return_fields=attribute,closedoutdetails,confidential,corrtypeid,docno,fromUserDetails,inreftomailno,mailRecipients,reasonforissueid,responsedate,secondaryattribute,sentdate,subject,tostatusid,totalAttachmentsSize,attachedDocumentCount"
+    filter = get_filter_string(bookmark, extraction_time, "sentdate")
 
     rows = get_all_pages(
         resource,
         f"projects/{project_id}/mail",
         "Mail",
         "MailSearch",
-        extra_query_string=f"&mail_box=sentbox&{fields}&{filter}",
+        extra_query_string=f"&mail_box=sentbox{fields}{filter}",
     )
 
     for r in rows:
@@ -100,6 +84,21 @@ def handle_mail(project_id, schema, state, mdata):
         r["MailId"] = r["@MailId"]
 
     write_many(rows, resource, schema, mdata, extraction_time)
+
+
+def get_filter_string(bookmark, extraction_time, field):
+    if bookmark is None:
+        return ""
+    else:
+        filter_date_format = "%Y%m%d"
+        filter_start = format_date(
+            parse_date(bookmark, datetime_format) - timedelta(days=1),
+            filter_date_format,
+        )
+        filter_end = format_date(
+            extraction_time + timedelta(days=1), filter_date_format
+        )
+        return f"&search_query={field}:[{filter_start} TO {filter_end}]"
 
 
 def write_many(rows, resource, schema, mdata, dt):
