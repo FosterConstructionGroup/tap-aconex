@@ -92,11 +92,11 @@ def get_filter_string(bookmark, extraction_time, field):
     else:
         filter_date_format = "%Y%m%d"
         filter_start = format_date(
-            parse_date(bookmark, datetime_format) - timedelta(days=1),
+            parse_date(bookmark, datetime_format) - timedelta(days=2),
             filter_date_format,
         )
         filter_end = format_date(
-            extraction_time + timedelta(days=1), filter_date_format
+            extraction_time + timedelta(days=2), filter_date_format
         )
         return f"&search_query={field}:[{filter_start} TO {filter_end}]"
 
