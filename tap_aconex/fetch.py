@@ -11,6 +11,7 @@ from tap_aconex.utility import (
     parse_date,
     format_date,
     date_format,
+    coerce_to_list,
 )
 
 
@@ -82,6 +83,11 @@ def handle_mail(project_id, schema, state, mdata):
     for r in rows:
         r["ProjectId"] = project_id
         r["MailId"] = r["@MailId"]
+        r["sent_to"] = next(
+            r["OrganizationName"]
+            for r in coerce_to_list(r["ToUsers"]["Recipient"])
+            if r["DistributionType"] == "TO"
+        )
 
     write_many(rows, resource, schema, mdata, extraction_time)
 

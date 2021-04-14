@@ -14,9 +14,24 @@
     "AttachedDocumentCount": { "type": ["null", "string"] },
     "AttachmentFileSize": { "type": ["null", "string"] },
     "Confidential": { "type": ["null", "boolean"] },
-    "FromUserDetails_OrganizationId": { "type": ["null", "string"] },
-    "FromUserDetails_OrganizationName": { "type": ["null", "string"] },
-    "FromUserDetails_Name": { "type": ["null", "string"] },
-    "FromUserDetails_UserId": { "type": ["null", "string"] }
+    "FromUserDetails": {
+      "type": ["null", "object"],
+      "properties": {
+        "OrganizationId": { "type": ["null", "string"] },
+        "OrganizationName": { "type": ["null", "string"] },
+        "Name": { "type": ["null", "string"] },
+        "UserId": { "type": ["null", "string"] }
+      }
+    },
+    "ResponseRequired": {
+      "type": ["null", "object"],
+      "properties": {
+        "ResponseRequiredDate": {
+          "type": ["null", "string"],
+          "format": "date-time"
+        }
+      }
+    },
+    "sent_to": { "type": ["null", "string"] }
   }
 }
