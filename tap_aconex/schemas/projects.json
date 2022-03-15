@@ -13,6 +13,7 @@
     "ProjectDescription": { "type": ["null", "string"] },
     "ProjectShortName": { "type": ["string"] },
     "ProjectState": { "type": ["null", "string"] },
-    "ProjectValue": { "type": ["null", "number"] }
+    "ProjectValue": { "type": ["null", "number"] },
+    "Active": { "type": ["boolean"] }
   }
 }

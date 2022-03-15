@@ -23,9 +23,14 @@ def handle_projects(resource, schemas, state, mdata):
     res = get_generic(resource, "projects")
     rows = res["ProjectResults"]["SearchResults"]["Project"]
 
-    write_many(rows, resource, schemas[resource], mdata, extraction_time)
-
     for row in rows:
+        row["Active"] = row["@Active"]
+        write_record(row, resource, schemas[resource], mdata, extraction_time)
+
+        # don't try to fetch documents or mail for inactive projects as the API will error
+        if not row["Active"]:
+            continue
+
         if "documents" in schemas:
             handle_documents(row["ProjectId"], schemas["documents"], state, mdata)
         if "mail" in schemas:
