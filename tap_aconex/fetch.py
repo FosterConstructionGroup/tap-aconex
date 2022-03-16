@@ -28,7 +28,7 @@ def handle_projects(resource, schemas, state, mdata):
         write_record(row, resource, schemas[resource], mdata, extraction_time)
 
         # don't try to fetch documents or mail for inactive projects as the API will error
-        if not row["Active"]:
+        if row["Active"] == "false":
             continue
 
         if "documents" in schemas:
