@@ -1,0 +1,8 @@
+{
+  "type": ["null", "object"],
+  "additionalProperties": false,
+  "properties": {
+    "OrganizationId": { "type": ["number"] },
+    "OrganizationName": { "type": ["string"] }
+  }
+}

@@ -2,9 +2,10 @@ from tap_aconex.fetch import handle_projects
 
 
 ID_FIELDS = {
-    "projects": "ProjectId",
     "documents": "DocumentId",
     "mail": "MailId",
+    "projects": "ProjectId",
+    "organisations": "OrganizationId",
 }
 
 
@@ -13,8 +14,5 @@ SYNC_FUNCTIONS = {
 }
 
 SUB_STREAMS = {
-    "projects": [
-        "mail",
-        "documents",
-    ],
+    "projects": ["documents", "mail", "organisations"],
 }
