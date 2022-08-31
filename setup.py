@@ -10,7 +10,11 @@ setup(
     url="http://singer.io",
     classifiers=["Programming Language :: Python :: 3 :: Only"],
     py_modules=["tap_aconex"],
-    install_requires=["singer-python==5.9.0", "requests==2.25.1", "xmltodict==0.12.0"],
+    install_requires=[
+        "pipelinewise-singer-python==1.*",
+        "requests==2.25.1",
+        "xmltodict==0.12.0",
+    ],
     extras_require={
         "dev": [
             "pylint",
