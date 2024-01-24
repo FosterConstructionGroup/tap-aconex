@@ -1,6 +1,5 @@
 import os
 import requests
-import singer.metrics as metrics
 from datetime import datetime
 import xmltodict
 

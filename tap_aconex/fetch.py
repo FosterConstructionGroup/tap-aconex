@@ -1,7 +1,6 @@
 from datetime import datetime, timezone, timedelta
 import re
 import singer
-import singer.metrics as metrics
 from singer import metadata
 from singer.bookmarks import get_bookmark
 from tap_aconex.utility import (
@@ -151,10 +150,8 @@ def get_filter_string(bookmark, extraction_time, field):
 
 
 def write_many(rows, resource, schema, mdata, dt):
-    with metrics.record_counter(resource) as counter:
-        for row in rows:
-            write_record(row, resource, schema, mdata, dt)
-            counter.increment()
+    for row in rows:
+        write_record(row, resource, schema, mdata, dt)
 
 
 def write_record(row, resource, schema, mdata, dt):
